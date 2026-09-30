@@ -1,27 +1,19 @@
-"use client";
+import Icon from './icon';
 
-const TaskSort = ({ sort, setSort }) => {
+export default function TaskSort({ sort, setSort }) {
   return (
-    <div className="flex items-center gap-2">
-      <span className="text-sm text-gray-500">Sort:</span>
-
+    <div className="sort-control">
+      <Icon name="sort" size={16} />
       <select
+        aria-label="Sort tasks"
         value={sort}
-        onChange={(e) => setSort(e.target.value)}
-        className="cursor-pointer rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 outline-none transition focus:border-gray-400 focus:ring-2 focus:ring-gray-100"
+        onChange={(event) => setSort(event.target.value)}
       >
-        <option className=" cursor-pointer" value="default">
-          Default
-        </option>
-        <option className=" cursor-pointer" value="alphabetical">
-          Alphabetical
-        </option>
-        <option className=" cursor-pointer" value="completion">
-          Completion
-        </option>
+        <option value="default">Default order</option>
+        <option value="alphabetical">Alphabetical</option>
+        <option value="completion">Status</option>
+        <option value="priority">Priority</option>
       </select>
     </div>
   );
-};
-
-export default TaskSort;
+}

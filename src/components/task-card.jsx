@@ -1,52 +1,63 @@
-"use client";
+import Icon from './icon';
 
-import { useState } from "react";
-
-function TaskCard({ data,deleteTask  }) {
-  const [completed, setCompleted] = useState(data.completed);
-
-  const handleToggle = () => {
-    setCompleted((prev) => !prev);
-  };
-
+export default function TaskCard({ data, onToggle, onEdit, onDelete }) {
   return (
-    <div className="w-full max-w-sm rounded-xl border border-gray-200 bg-white p-5 shadow-md transition hover:shadow-lg">
-      <div className="flex items-start justify-between gap-4">
-        <h2
-          className={`text-lg font-semibold ${
-            completed ? "text-gray-400 line-through" : "text-gray-800"
-          }`}
-        >
-          {data.title}
-        </h2>
-
-        <input
-          type="checkbox"
-          checked={completed}
-          onChange={handleToggle}
-          className="mt-1 h-5 w-5 cursor-pointer"
-        />
+    <article className={`task-card ${data.completed ? 'is-completed' : ''}`}>
+      <div className="card-top">
+        <span className="card-category">
+          <span className={`category-dot ${data.category.toLowerCase()}`} />
+          {data.category}
+        </span>
+        <span className={`priority-badge ${data.priority}`}>
+          <span />
+          {data.priority[0].toUpperCase() + data.priority.slice(1)} priority
+        </span>
       </div>
-
-      <p className="mt-4 text-sm text-gray-600">
-        <span className="font-medium">ID:</span> {data.id}
-      </p>
-
-      <p
-        className={`mt-2 text-sm font-medium ${
-          completed ? "text-green-600" : "text-orange-500"
-        }`}
-      >
-        {completed ? "✓ Completed" : "○ Pending"}
-      </p>
-       <button
-        onClick={() => deleteTask(data.id)}
-        className="mt-4 rounded-md bg-red-500 px-4 py-2 text-white"
-      >
-        Delete
-      </button>
-    </div>
+      <div className="card-body">
+        <h3>{data.title}</h3>
+        {data.description && <p>{data.description}</p>}
+      </div>
+      <div className="card-meta">
+        <span className="task-reference">
+          TASK-{String(data.id).slice(0, 4).padStart(3, '0').toUpperCase()}
+        </span>
+        <span className="assignee" title={`User ${data.userId}`}>
+          <Icon name="user" size={12} />
+          <span>User {data.userId}</span>
+        </span>
+      </div>
+      <div className="card-footer">
+        <label className={`task-status ${data.completed ? 'done' : ''}`}>
+          <input
+            type="checkbox"
+            checked={data.completed}
+            onChange={onToggle}
+            aria-label={`Mark ${data.title} as ${data.completed ? 'incomplete' : 'completed'}`}
+          />
+          <span className="custom-checkbox">
+            <Icon name="check" size={12} />
+          </span>
+          <span>{data.completed ? 'Completed' : 'In progress'}</span>
+        </label>
+        <div className="card-actions">
+          <button
+            className="icon-button"
+            onClick={onEdit}
+            aria-label={`Edit ${data.title}`}
+            title="Edit task"
+          >
+            <Icon name="edit" size={15} />
+          </button>
+          <button
+            className="icon-button delete-button"
+            onClick={onDelete}
+            aria-label={`Delete ${data.title}`}
+            title="Delete task"
+          >
+            <Icon name="trash" size={15} />
+          </button>
+        </div>
+      </div>
+    </article>
   );
 }
-
-export default TaskCard;

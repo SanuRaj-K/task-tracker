@@ -1,29 +1,21 @@
-"use client";
-
-const TaskFilter = ({ filter, setFilter }) => {
-  const filters = [
-    { value: "all", label: "All" },
-    { value: "completed", label: "Completed" },
-    { value: "incomplete", label: "Incomplete" },
-  ];
-
+export default function TaskFilter({ filter, setFilter, counts }) {
   return (
-    <div className="flex w-fit rounded-lg bg-gray-100 p-1">
-      {filters.map((item) => (
+    <div className="filter-tabs" aria-label="Filter tasks">
+      {[
+        ['all', 'All tasks'],
+        ['incomplete', 'In progress'],
+        ['completed', 'Completed'],
+      ].map(([value, label]) => (
         <button
-          key={item.value}
-          onClick={() => setFilter(item.value)}
-          className={`rounded-md px-4 py-2 text-sm font-medium transition ${
-            filter === item.value
-              ? "bg-white text-gray-900 shadow-sm"
-              : "text-gray-500 hover:text-gray-900"
-          }`}
+          key={value}
+          className={filter === value ? 'active' : ''}
+          aria-pressed={filter === value}
+          onClick={() => setFilter(value)}
         >
-          {item.label}
+          {label}
+          <span>{counts[value]}</span>
         </button>
       ))}
     </div>
   );
-};
-
-export default TaskFilter;
+}
