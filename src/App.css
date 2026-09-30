@@ -288,8 +288,26 @@
 }
 .topbar-right {
   display: flex;
-  gap: 24px;
+  gap: 14px;
   align-items: center;
+}
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: #796b91;
+  background: #fff;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.theme-toggle:hover {
+  background: #f7f3fc;
+  color: var(--purple);
 }
 .local-label {
   display: flex;
@@ -931,9 +949,9 @@
 }
 .card-body h3 {
   margin: 0;
-  font-size: 14px;
-  font-weight: 550;
-  line-height: 1.65;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
   color: #595065;
   overflow-wrap: anywhere;
 }
@@ -1428,7 +1446,7 @@
     min-height: 216px;
   }
   .card-body h3 {
-    font-size: 14px;
+    font-size: 20px;
   }
 }
 @media (max-width: 1220px) {
@@ -1623,6 +1641,17 @@
   }
 }
 @media (max-width: 600px) {
+  .topbar-right {
+    gap: 8px;
+  }
+  .theme-toggle {
+    width: 32px;
+    min-height: 32px;
+    padding: 6px;
+  }
+  .theme-toggle > span {
+    display: none;
+  }
   .mobile-category-filter {
     margin-left: auto;
   }
@@ -1797,7 +1826,7 @@
     min-height: 69px;
   }
   .card-body h3 {
-    font-size: 14px;
+    font-size: 18px;
   }
   .card-category,
   .task-status {
@@ -1828,7 +1857,7 @@
     padding: 13px;
   }
   .list-view .card-body h3 {
-    font-size: 12px;
+    font-size: 16px;
   }
   .list-view .priority-badge {
     font-size: 7px;

@@ -1,0 +1,238 @@
+/* Keep illustration colors independent; theme all functional workspace surfaces. */
+:root[data-theme='dark']
+  :is(
+    .sidebar,
+    .topbar,
+    .stat-card,
+    .task-card,
+    .task-dialog,
+    .toast,
+    .date-chip,
+    .search-field,
+    .sort-control,
+    .view-switch,
+    .secondary-button,
+    .mobile-category-filter,
+    .skeleton-card,
+    .theme-toggle
+  ) {
+  background: var(--dark-surface);
+  border-color: var(--border);
+}
+
+:root[data-theme='dark'] :is(.focus-note, .help-tip, .dialog-icon, .empty-icon) {
+  background: var(--dark-surface-muted);
+  border-color: var(--border);
+}
+
+:root[data-theme='dark']
+  :is(
+    .workspace-switch strong,
+    .sidebar-profile strong,
+    .page-heading h1,
+    .section-heading h2,
+    .stat-value,
+    .card-body h3,
+    .task-dialog h2,
+    .empty-state h3
+  ) {
+  color: var(--dark-text);
+}
+
+:root[data-theme='dark']
+  :is(
+    .breadcrumb strong,
+    .nav-item,
+    .category-link,
+    .help-button,
+    .focus-note h3,
+    .stat-top,
+    .form-field label,
+    .secondary-button,
+    .theme-toggle,
+    .date-chip,
+    .search-field input,
+    .sort-control select,
+    .mobile-category-filter,
+    .task-status
+  ) {
+  color: var(--dark-text-secondary);
+}
+
+:root[data-theme='dark']
+  :is(
+    .nav-label,
+    .breadcrumb,
+    .local-label,
+    .eyebrow,
+    .focus-note p,
+    .category-link > span:last-child,
+    .stat-caption,
+    .progress-caption,
+    .section-heading p,
+    .filter-tabs button,
+    .card-category,
+    .card-body p,
+    .card-meta,
+    .assignee,
+    .task-footer,
+    .task-footer strong,
+    .page-footer,
+    .dialog-description,
+    .form-field label > .optional,
+    .completed-field,
+    .help-tip p,
+    .empty-state p,
+    .toast,
+    .icon-button,
+    .view-switch button
+  ) {
+  color: var(--dark-text-muted);
+}
+
+:root[data-theme='dark']
+  :is(
+    .nav-item:hover,
+    .category-link:hover,
+    .category-link.selected,
+    .secondary-button:hover,
+    .theme-toggle:hover,
+    .icon-button:hover,
+    .filter-tabs button:hover
+  ) {
+  background: var(--dark-surface-hover);
+  color: var(--purple);
+}
+
+:root[data-theme='dark']
+  :is(
+    .nav-item.active,
+    .filter-tabs button.active,
+    .view-switch button.selected,
+    .workspace-avatar,
+    .stat-icon.purple,
+    .dialog-icon,
+    .empty-icon
+  ) {
+  background: var(--purple-light);
+  color: var(--purple);
+}
+
+:root[data-theme='dark']
+  :is(.nav-count, .heading-count, .filter-tabs button > span, .progress-track) {
+  background: var(--dark-surface-muted);
+  color: var(--dark-text-secondary);
+}
+
+:root[data-theme='dark'] :is(.active .nav-count, .filter-tabs button.active > span) {
+  background: #44325f;
+  color: #d4bafa;
+}
+
+:root[data-theme='dark'] :is(.brand-mark, .primary-button) {
+  background: #805ad7;
+  color: #fff;
+}
+:root[data-theme='dark'] .primary-button:hover {
+  background: #704cc6;
+}
+:root[data-theme='dark'] .stat-icon.orange {
+  background: #3b3025;
+  color: #e8b978;
+}
+:root[data-theme='dark'] :is(.stat-icon.green, .toast-icon) {
+  background: #25382f;
+  color: #93cdb0;
+}
+:root[data-theme='dark'] .progress-track > span {
+  background: linear-gradient(90deg, #8062c4, #b69aee);
+}
+
+:root[data-theme='dark'] .task-card:hover {
+  border-color: #645078;
+  box-shadow: 0 6px 20px #00000024;
+}
+:root[data-theme='dark'] :is(.card-footer, .dialog-footer, .page-footer) {
+  border-color: var(--border);
+}
+:root[data-theme='dark'] .list-view .card-footer {
+  border: 0;
+}
+:root[data-theme='dark'] .priority-badge.medium {
+  background: #3b3024;
+  color: #e3b273;
+}
+:root[data-theme='dark'] .priority-badge.high {
+  background: #3f2630;
+  color: #f0a0ad;
+}
+:root[data-theme='dark'] .priority-badge.low {
+  background: #253a2f;
+  color: #9cd3b1;
+}
+:root[data-theme='dark'] .is-completed .card-body h3 {
+  color: var(--dark-text-muted);
+  text-decoration-color: #71647f;
+}
+:root[data-theme='dark'] .custom-checkbox {
+  background: var(--dark-field);
+  border-color: #71647f;
+}
+:root[data-theme='dark'] .task-status.done {
+  color: #9cd3b1;
+}
+:root[data-theme='dark'] .done .custom-checkbox {
+  background: #4d8066;
+  border-color: #4d8066;
+  color: #fff;
+}
+:root[data-theme='dark'] .delete-button:hover {
+  background: #3f2630;
+  color: #f0a0ad;
+}
+
+:root[data-theme='dark'] .search-field:focus-within {
+  border-color: #9c7bd3;
+  box-shadow: 0 0 0 3px #8d69c726;
+}
+:root[data-theme='dark'] :is(.search-field, .sort-control) > svg {
+  color: var(--dark-text-muted);
+}
+:root[data-theme='dark'] .search-field kbd {
+  border-color: #443b51;
+  color: var(--dark-text-muted);
+}
+:root[data-theme='dark'] .search-field input::placeholder,
+:root[data-theme='dark'] .form-field input::placeholder,
+:root[data-theme='dark'] .form-field textarea::placeholder {
+  color: #9b8cac;
+}
+:root[data-theme='dark'] :is(.form-field input, .form-field textarea, .form-field select) {
+  background: var(--dark-field);
+  color: var(--dark-text);
+  border-color: #443b51;
+}
+:root[data-theme='dark'] .field-error {
+  color: #f0a0ad;
+}
+:root[data-theme='dark'] .empty-state {
+  background: #1e1c2880;
+  border-color: #443b51;
+}
+:root[data-theme='dark'] .skeleton-card span {
+  background: #322b40;
+}
+:root[data-theme='dark'] .inline-warning {
+  background: #392f22;
+  border-color: #53412d;
+  color: #e0bc84;
+}
+:root[data-theme='dark'] .task-dialog::backdrop {
+  background: #08060db3;
+}
+:root[data-theme='dark'] .avatar {
+  background: #47372f;
+  color: #e2b797;
+  border-color: #282330;
+  box-shadow: 0 0 0 1px #4b3e47;
+}

@@ -14,7 +14,7 @@ export default function TaskCard({ data, onToggle, onEdit, onDelete }) {
         </span>
       </div>
       <div className="card-body">
-        <h3>{data.title}</h3>
+        <h3 className=' '>{data.title}</h3>
         {data.description && <p>{data.description}</p>}
       </div>
       <div className="card-meta">

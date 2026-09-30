@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
+import './dark-theme.css';
 import Icon from './components/icon';
 import TaskCard from './components/task-card';
 import AddTask from './components/add-task';
@@ -10,8 +11,10 @@ import DashboardIntro from './components/dashboard-intro';
 import TaskOverview from './components/task-overview';
 import HelpDialog from './components/help-dialog';
 import useTasks from './hooks/use-tasks';
+import useTheme from './hooks/use-theme';
 
 function App() {
+  const { theme, toggleTheme } = useTheme();
   const {
     tasks,
     isLoading,
@@ -130,6 +133,18 @@ function App() {
             <strong>My tasks</strong>
           </div>
           <div className="topbar-right">
+            <button
+              type="button"
+              className="theme-toggle"
+              role="switch"
+              aria-label="Dark mode"
+              aria-checked={theme === 'dark'}
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              onClick={toggleTheme}
+            >
+              <Icon name={theme === 'dark' ? 'moon' : 'sun'} size={17} />
+              <span>{theme === 'dark' ? 'Dark mode' : 'Light mode'}</span>
+            </button>
             <button
               className="icon-button"
               aria-label="Open help"

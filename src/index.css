@@ -5,6 +5,7 @@
 }
 
 :root {
+  color-scheme: light;
   font-family: 'Inter', 'Segoe UI', sans-serif;
   color: #292735;
   background: #f8f9fc;
@@ -17,6 +18,24 @@
   --purple-light: #f0ebfb;
   --muted: #746f80;
   --border: #eaeaf1;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  color: #e9e5f2;
+  background: #14131b;
+  --purple: #bd9ef7;
+  --purple-dark: #7754cc;
+  --purple-light: #322742;
+  --muted: #aba0ba;
+  --border: #343040;
+  --dark-surface: #1e1c28;
+  --dark-surface-muted: #282433;
+  --dark-surface-hover: #302a40;
+  --dark-field: #191721;
+  --dark-text: #e9e5f2;
+  --dark-text-secondary: #c0b6d0;
+  --dark-text-muted: #a296b4;
 }
 
 * {

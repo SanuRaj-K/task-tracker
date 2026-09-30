@@ -19,6 +19,7 @@ Open the local URL printed by Vite. On Windows, use `npm.cmd` if PowerShell bloc
 - Search titles and descriptions; filter by status or category.
 - Sort by original order, title, completion, or priority.
 - Switch between card and list layouts.
+- Toggle light and dark themes from the header. The initial theme follows your device preference; an explicit choice is saved on this browser.
 - View live task counts and completion progress.
 - Add categories, priorities, and optional descriptions.
 - Keep changes across reloads using browser storage.

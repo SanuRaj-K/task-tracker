@@ -20,6 +20,11 @@ let root;
 
 beforeEach(() => {
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT', true);
+  document.documentElement.removeAttribute('data-theme');
+  vi.stubGlobal(
+    'matchMedia',
+    vi.fn(() => ({ matches: false })),
+  );
   localStorage.clear();
   axios.get.mockReset();
   axios.get.mockImplementation((_url, { signal }) =>
@@ -79,6 +84,51 @@ function savedTasks() {
 }
 
 describe('Taskly workflows', () => {
+  it('switches themes, saves the choice, and restores it after a fresh mount', async () => {
+    await renderApp();
+    const toggle = () => container.querySelector('[role="switch"][aria-label="Dark mode"]');
+    expect(toggle().getAttribute('aria-checked')).toBe('false');
+    await click(toggle());
+    expect(document.documentElement.dataset.theme).toBe('dark');
+    expect(toggle().getAttribute('aria-checked')).toBe('true');
+    expect(localStorage.getItem('taskly.theme')).toBe('dark');
+
+    await act(async () => root.unmount());
+    document.documentElement.removeAttribute('data-theme');
+    root = createRoot(container);
+    await renderApp();
+    expect(document.documentElement.dataset.theme).toBe('dark');
+    await click(toggle());
+    expect(document.documentElement.dataset.theme).toBe('light');
+    expect(localStorage.getItem('taskly.theme')).toBe('light');
+  });
+
+  it('follows the device theme when there is no explicit choice', async () => {
+    window.matchMedia.mockReturnValue({ matches: true });
+    await renderApp();
+    expect(document.documentElement.dataset.theme).toBe('dark');
+    expect(localStorage.getItem('taskly.theme')).toBeNull();
+  });
+
+  it('prefers a saved theme over the device preference', async () => {
+    window.matchMedia.mockReturnValue({ matches: true });
+    localStorage.setItem('taskly.theme', 'light');
+    await renderApp();
+    expect(document.documentElement.dataset.theme).toBe('light');
+  });
+
+  it('can switch themes when browser storage is blocked', async () => {
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new Error('Blocked');
+    });
+    vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      throw new Error('Blocked');
+    });
+    await renderApp();
+    await click(container.querySelector('[role="switch"]'));
+    expect(document.documentElement.dataset.theme).toBe('dark');
+  });
+
   it('loads the API and keeps completion, filters, and progress in sync', async () => {
     await renderApp();
     expect(cards()).toHaveLength(3);
